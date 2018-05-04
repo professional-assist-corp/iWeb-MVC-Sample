@@ -1,0 +1,91 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Avectra.netForum.BaseUI.BaseModel>
+@using Avectra.netForum.ServiceLayer
+@{ 
+    if (Model.navMenu == null)
+    {
+        Model.navMenu = new AbstractNavMenu(Model.dynKey, Model.itemKey, Model.linkKey, Model.tab, Model.tabItem, Model.navModule);
+    }
+    AbstractNavMenu navMenu = (AbstractNavMenu)Model.navMenu;
+}
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" data-current-url="@Request.RawUrl">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@navMenu.navModule | @navMenu.navItem | @Model.title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        @Scripts.Render("~/Assets/scripts/load-check.js")
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,600,300,700")
+        @Styles.Render("~/Assets/css/vendor/animate.css")
+        @Styles.Render("~/Assets/css/vendor/bootstrap.min.css")
+        @Styles.Render("~/Assets/plugins/font-awesome/css/font-awesome.min.css")
+        @Styles.Render("~/Assets/css/vendor/metisMenu.min.css")
+        @Styles.Render("~/Assets/plugins/jquery.bootgrid/jquery.bootgrid.css")
+        @Styles.Render("~/Assets/plugins/custom/jquery-ui/jquery-ui.min.css")
+        @Styles.Render("~/Assets/plugins/custom/jquery-ui/jquery-ui.structure.min.css")
+        @Styles.Render("~/Assets/plugins/custom/jquery-ui/jquery-ui.theme.min.css")
+        @Styles.Render("~/Assets/styles/dest/main.css")
+        @Styles.Render("~/Assets/styles/dest/profile.css")
+
+        @* DEBT: once the concat task is live, css should be in the public folder *@
+
+        @Scripts.Render("~/Assets/plugins/jquery/js/jquery.min.js")
+        @Scripts.Render("~/Assets/js/vendor/bootstrap.min.js")
+        @Scripts.Render("~/Assets/js/vendor/bootstrap-tabdrop.js")
+        @Scripts.Render("~/Assets/plugins/custom/jquery-ui/jquery-ui.min.js")
+    </head>
+    <body>
+        @{
+            Html.RenderPartial("Header");
+            Html.RenderPartial("NavMenu");
+        }
+
+        <div id="main-wrapper">
+            @{
+                Html.RenderPartial("Breadcrumb");
+            }
+
+            @RenderBody()
+
+            @{ 
+                Html.RenderPartial("ProfileModal");
+            }
+
+            @{
+                Html.RenderPartial("LargeModal");
+            }
+
+            @{
+                Html.RenderPartial("Footer");
+            }
+        </div>
+
+        @{
+            Html.RenderPartial("SystemModal");
+        }
+
+        @Scripts.Render("~/Assets/js/vendor/metisMenu.min.js")
+        @Scripts.Render("~/Assets/plugins/typeahead.js/js/typeahead.bundle.min.js")
+        @Scripts.Render("~/Assets/plugins/jquery.bootgrid/jquery.bootgrid.js")
+        @Scripts.Render("~/Assets/plugins/jquery.bootgrid/jquery.bootgrid.fa.js")
+        @Scripts.Render("~/Assets/plugins/moment/moment.min.js")
+        @Scripts.Render("~/Assets/scripts/app/support/ajax-error.js")
+        @Scripts.Render("~/Assets/scripts/app/support/events/callback-factory.js")
+        @Scripts.Render("~/Assets/scripts/app/support/grids/data-grid.js")
+        @Scripts.Render("~/Assets/scripts/app/support/events/routes.js")
+        @Scripts.Render("~/Assets/scripts/global.js")
+        @Scripts.Render("~/Assets/scripts/app/support/validate.js")
+        @Scripts.Render("~/Assets/scripts/app/profile.js")
+        @Scripts.Render("~/Assets/scripts/app/support/input-types.js")
+
+        @* unfortunately need to add legacy scripts to support ancient functionality *@
+        @Scripts.Render("~/Scripts/FormFunctions.js")
+    </body>
+</html>
+

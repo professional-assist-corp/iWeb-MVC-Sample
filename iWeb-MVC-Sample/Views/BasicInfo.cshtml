@@ -1,0 +1,18 @@
+﻿
+@{ Layout = "~/Views/Shared/_Layout2.cshtml"; }
+@Styles.Render("~/Assets/Styles/SampleCustom.css")
+@Scripts.Render("~/Assets/scripts/SampleCustom.js")
+
+@{
+    string ind_count = (string)ViewData["ind_count"];
+}
+
+<div id="ContentPane">
+    <div class="mainDiv">
+        <h1>Basic Info</h1>
+        <p>You are logged in as @User.Identity.Name</p>
+        <p>There are @ind_count rows in your co_individual table</p>
+
+        <input type="text" id="recno" /><button id="btnLookup">Go to customer</button>
+    </div>
+</div>
